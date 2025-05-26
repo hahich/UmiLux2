@@ -1,0 +1,192 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonts */
+@font-face {
+    font-family: 'GeneralSans';
+    src: url('../fonts/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Regular.woff2') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GeneralSans';
+    src: url('../fonts/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Bold.woff2') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GeneralSans';
+    src: url('../fonts/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Italic.woff2') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GeneralSans';
+    src: url('../fonts/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-BoldItalic.woff2') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Geostar Fill";
+    src: url(../fonts/Geostar_Fill/GeostarFill-Regular.ttf);
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Root Variables */
+:root {
+    /* Colors */
+    --white: #FFFFFF;
+    --black: #111111;
+    --gray: #757575;
+    --gray-5555: #555555;
+    --dark-navy-blue: #253380;
+    --light-navy-blue: #00768F;
+    --yellow: #FFD700;
+    --purple: #800080;
+    --red-color: #EB0000;
+    --green: #008000;
+
+    /* Background Colors */
+    --bg-default: #545454;
+    --bg-console: #177E91;
+    --bg-phone: #E01F50;
+    --bg-camera: #4E21DE;
+    --bg-selling: #F1F3F7;
+    --bg-divider: #E5E8EC;
+    --bg-insta: #cc39a4;
+    --bg-facebook: #367cf4;
+    --bg-yellow: #807800;
+
+    /* Layout */
+    --container-width: 1440px;
+    --flex: flex;
+    --center: center;
+    --space-between: space-between;
+
+    /* Spacing */
+    --gap-10: 10px;
+    --gap-25: 25px;
+
+    /* Typography */
+    --header-font-size: 50px;
+    --fs-12: 12px;
+    --fs-13: 13px;
+    --fs-14: 14px;
+    --fs-16: 16px;
+    --fs-18: 18px;
+    --fs-28: 28px;
+
+    /* font weight */
+    --fw-600: 600;
+    --fw-500: 500;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+/* Global Styles */
+html,
+body {
+    font-family: 'General-Sans', sans-serif !important;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none !important;
+    color: var(--black) !important;
+}
+
+a:hover {
+    color: var(--light-navy-blue) !important;
+    transition: color 0.3s ease-in-out !important;
+}
+
+a:active {
+    color: var(--dark-navy-blue) !important;
+    transition: color 0.3s ease-in-out !important;
+}
+
+ul,
+p {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+button {
+    border: none;
+    background-color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: 100%;
+    image-rendering: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.section-img:hover img,
+.section-sell-product-card:hover img,
+.product-img-wrapper:hover img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.section-img:not(:hover) img,
+.section-sell-product-card:not(:hover) img,
+.product-img-wrapper:not(:hover) img {
+    transform: scale(1.0);
+    transition: transform 0.3s ease-in-out;
+}
+
+select {
+    font-size: var(--fs-14) !important;
+    border: none;
+    background-color: inherit;
+}
+
+svg:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: #364A9B;
+}
+
+.gap-60px {
+    margin: 60px auto !important;
+}
+
+.flex-center {
+    display: var(--flex);
+    justify-content: var(--center);
+    align-items: var(--center);
+}
+
+.hide {
+    top: -200px !important;
+}
