@@ -111,6 +111,100 @@ function initSaleCarousels() {
 } const isMobile = window.innerWidth < 1024;
 const initCarousel = (selector, responsive) => { jQuery(selector).owlCarousel({ loop: false, lazyLoad: true, nav: false, mouseDrag: selector !== '.carousel-deals' && selector !== '.carousel-recommend', touchDrag: true, autoplay: true, autoplayTimeout: 3000, autoplayHoverPause: true, responsive: responsive, onInitialized: updateAriaLabels, onRefreshed: updateAriaLabels }); }, updateAriaLabels = function () { jQuery(this.$element).find('.owl-dot').each(function (index) { jQuery(this).attr('aria-label', `Go to slide ${index + 1}`); }); }; jQuery(document).ready(function () { initCarousel('.carousel-sale', { 0: { items: 1 }, 576: { items: 2 }, 756: { items: 3 }, 1024: { items: 4 }, 1200: { items: 8 } }); initCarousel('.carousel-deals', { 0: { items: 1 }, 576: { items: 2 }, 768: { items: 3 }, 1024: { items: 4 }, 1200: { items: 5 } }); initCarousel('.carousel-recommend', { 0: { items: 1 }, 576: { items: 2 }, 768: { items: 3 }, 1024: { items: 4 }, 1200: { items: 5 } }); });
 function initCountdown() { let e = localStorage.getItem("countDownEndTime"); e ? e = parseInt(e) : (e = Date.now() + 739584e5, localStorage.setItem("countDownEndTime", e)), setInterval((() => { const t = Date.now(), n = e - t, o = Math.floor(n / 864e5), s = Math.floor(n % 864e5 / 36e5), i = Math.floor(n % 36e5 / 6e4), a = Math.floor(n % 6e4 / 1e3); document.getElementById("days").textContent = String(o).padStart(2, "0"), document.getElementById("hours").textContent = String(s).padStart(2, "0"), document.getElementById("minutes").textContent = String(i).padStart(2, "0"), document.getElementById("seconds").textContent = String(a).padStart(2, "0") }), 1e3) }
-function initSellCarousel() { const e = document.querySelector(".section-sell-product-carousel"); if (!e) return; let t, n, o = !1, s = 0, i = 0, a = 0, c = 0; const r = e => e.type.includes("mouse") ? e.pageX : e.touches[0].clientX, l = t => e.style.transform = `translateX(${t}px)`, d = t => { s = r(t), o = !0, e.classList.add("grabbing"), g(), cancelAnimationFrame(n) }, u = e => { o && (i = a + (r(e) - s), l(i)) }, m = () => { o = !1, e.classList.remove("grabbing"); const t = e.querySelector(".section-sell-product-card"), s = -(e.querySelectorAll(".section-sell-product-card").length * t.offsetWidth - e.offsetWidth); let r = Math.round(i / t.offsetWidth) * t.offsetWidth; r = Math.max(s, Math.min(0, r)), c = Math.abs(Math.round(r / t.offsetWidth)); const d = () => { const e = r - i; if (Math.abs(e) < .5) return i = r, a = i, l(i), void v(); i += .2 * e, a = i, l(i), n = requestAnimationFrame(d) }; n = requestAnimationFrame(d) }, v = () => { g(), t = setInterval((() => { const t = e.querySelector(".section-sell-product-card"), n = e.querySelectorAll(".section-sell-product-card").length, o = Math.floor(e.offsetWidth / t.offsetWidth); c = c >= n - o ? 0 : c + 1, f(-c * t.offsetWidth) }), 3e3) }, g = () => clearInterval(t), f = e => { const t = i, n = performance.now(), o = s => { const c = s - n; if (c >= 500) return l(e); const r = 1 - Math.pow(1 - c / 500, 3); i = t + (e - t) * r, a = i, l(i), requestAnimationFrame(o) }; requestAnimationFrame(o) }; e.addEventListener("touchstart", d, { passive: !0 }), e.addEventListener("touchmove", u, { passive: !0 }), e.addEventListener("touchend", m), e.addEventListener("mousedown", d), e.addEventListener("mousemove", u), e.addEventListener("mouseup", m), e.addEventListener("mouseleave", m), e.addEventListener("contextmenu", (e => e.preventDefault())); const h = () => { i = a = 0, c = 0, l(0), window.innerWidth >= 992 ? g() : v() }; window.addEventListener("resize", h), document.addEventListener("visibilitychange", (() => document.hidden ? g() : window.innerWidth < 992 && v())), h() }
+function initSellCarousel() {
+    const e = document.querySelector(".section-sell-product-carousel");
+    if (!e) return;
+    let t, n, o = !1, s = 0, i = 0, a = 0, currentIndex = 0, moved = false;
+    const getX = ev => ev.type.includes("mouse") ? ev.pageX : ev.touches[0].clientX,
+        setTransform = t => e.style.transform = `translateX(${t}px)`,
+        d = ev => {
+            s = getX(ev);
+            o = true;
+            moved = false;
+            e.classList.add("grabbing");
+            stopAuto();
+            cancelAnimationFrame(n);
+        },
+        u = ev => {
+            if (!o) return;
+            if (ev.type.startsWith('touch')) ev.preventDefault();
+            const delta = getX(ev) - s;
+            i = a + delta;
+            setTransform(i);
+            // Nếu kéo đủ ngưỡng thì snap luôn
+            const card = e.querySelector(".section-sell-product-card");
+            if (card && Math.abs(delta) > 30 && !moved) {
+                moved = true;
+                // Đúng hướng: kéo sang trái (delta < 0) thì next, sang phải (delta > 0) thì prev
+                if (delta < 0) {
+                    snapToSlide(currentIndex + 1, card.offsetWidth);
+                } else {
+                    snapToSlide(currentIndex - 1, card.offsetWidth);
+                }
+            }
+        },
+        m = () => {
+            o = false;
+            e.classList.remove("grabbing");
+            if (!moved) {
+                // Snap về đúng sản phẩm gần nhất
+                const card = e.querySelector(".section-sell-product-card");
+                if (card) {
+                    let total = e.querySelectorAll(".section-sell-product-card").length;
+                    let min = -(total * card.offsetWidth - e.offsetWidth);
+                    let idx = Math.round(i / -card.offsetWidth);
+                    idx = Math.max(0, Math.min(total - Math.floor(e.offsetWidth / card.offsetWidth), idx));
+                    snapToSlide(idx, card.offsetWidth);
+                }
+            }
+        },
+        snapToSlide = (idx, cardWidth) => {
+            const total = e.querySelectorAll(".section-sell-product-card").length;
+            const maxIdx = total - Math.floor(e.offsetWidth / cardWidth);
+            currentIndex = Math.max(0, Math.min(idx, maxIdx));
+            const target = -currentIndex * cardWidth;
+            animateTo(target);
+        },
+        animateTo = target => {
+            const animate = () => {
+                const diff = target - i;
+                if (Math.abs(diff) < 0.5) return i = target, a = i, setTransform(i), void auto();
+                i += 0.2 * diff;
+                a = i;
+                setTransform(i);
+                n = requestAnimationFrame(animate);
+            };
+            n = requestAnimationFrame(animate);
+        },
+        auto = () => {
+            stopAuto();
+            t = setInterval(() => {
+                const card = e.querySelector(".section-sell-product-card"),
+                    total = e.querySelectorAll(".section-sell-product-card").length,
+                    visible = Math.floor(e.offsetWidth / card.offsetWidth);
+                currentIndex = currentIndex >= total - visible ? 0 : currentIndex + 1;
+                snapToSlide(currentIndex, card.offsetWidth);
+            }, 3000);
+        },
+        stopAuto = () => clearInterval(t);
+
+    e.addEventListener("touchstart", d, { passive: true });
+    e.addEventListener("touchmove", u, { passive: false });
+    e.addEventListener("touchend", m);
+    e.addEventListener("mousedown", d);
+    e.addEventListener("mousemove", u);
+    e.addEventListener("mouseup", m);
+    e.addEventListener("mouseleave", m);
+    e.addEventListener("contextmenu", e => e.preventDefault());
+    const h = () => {
+        i = a = 0;
+        currentIndex = 0;
+        setTransform(0);
+        window.innerWidth >= 992 ? stopAuto() : auto();
+    };
+    window.addEventListener("resize", h);
+    document.addEventListener("visibilitychange", () => document.hidden ? stopAuto() : window.innerWidth < 992 && auto());
+    h();
+}
 function fadeIn() { if (window.innerWidth <= 768) return void document.querySelectorAll(".section-fadein").forEach((e => { e.classList.add("visible") })); const e = document.querySelectorAll(".section-fadein"), t = new IntersectionObserver((e => { e.forEach((e => { e.isIntersecting && e.target.parentElement.querySelectorAll(".section-fadein").forEach(((e, t) => { setTimeout((() => { e.classList.add("visible") }), 200 * t) })) })) }), { threshold: .1 }); e.forEach((e => { t.observe(e) })) }
 document.addEventListener("DOMContentLoaded", (() => { initDropdowns(), initBannerSlider(), initSaleCarousels(), initCountdown(), initSellCarousel(), initScrollHeader(), initCategoryMenu(), fadeIn() }))
