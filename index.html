@@ -37,7 +37,7 @@
                 <div class="right-header flex-center">
                     <a href="./loadingPage.html" aria-label="our stores">Our Stores</a>
                     <div class="language-option flex-center" onclick="toggleDropdown('language-dropdown')">
-                        <a href="#" aria-label="english">English</a>
+                        <a href="" aria-label="english">English</a>
                         <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M0.648438 0.847656C0.546875 0.753906 0.496094 0.640625 0.496094 0.507812C0.496094 0.367188 0.546875 0.246094 0.648438 0.144531C0.742188 0.0507812 0.859375 0.00390625 1 0.00390625C1.14062 0.00390625 1.25781 0.0507812 1.35156 0.144531L4 2.79297L6.64844 0.144531C6.74219 0.0507812 6.85938 0.00390625 7 0.00390625C7.14062 0.00390625 7.25781 0.0507812 7.35156 0.144531C7.45312 0.246094 7.50391 0.367188 7.50391 0.507812C7.50391 0.640625 7.45312 0.753906 7.35156 0.847656L4.35156 3.84766C4.25781 3.94922 4.14062 4 4 4C3.85938 4 3.74219 3.94922 3.64844 3.84766L0.648438 0.847656Z"
@@ -1950,8 +1950,8 @@
                     <p class="close d-xl-none">-</p>
                 </a>
                 <div class="collapse d-xl-block" id="footer-about">
-                    <p class="footer-text">Established with a passion for innovation and a commitment to<br>
-                        providing top-notch technology solutions, we have emerged as a<br>
+                    <p class="footer-text">Established with a passion for innovation and a commitment to
+                        providing top-notch technology solutions, we have emerged as a
                         trusted name in the electronics retail industry.
                     </p>
                     <div class="footer-social-wrapper">
@@ -2067,16 +2067,30 @@
             style="width: calc((var(--container-width) - 24px)); margin: 60px auto 0; background-color: #DEE2E8; max-width: 100%;">
         </div>
         <div id="section-footer-bottom" class="flex-column flex-lg-row">
-            <div class="footer-bottom d-none d-lg-flex">
-                <div class="">
-                    <select name="language" id="language" aria-label="choosen">
-                        <option value="English">English</option>
-                        <option value="VN">Việt Nam</option>
-                    </select>
-                    <select name="currency" id="currency" aria-label="choosen">
-                        <option value="English">United Status (USD $)</option>
-                        <option value="VN">Việt Nam (VNĐ)</option>
-                    </select>
+            <div class="right-header flex-center footer-option">
+                <div class="language-option-1 flex-center" onclick="toggleDropdown('language-dropdown-1')">
+                    <a href="" aria-label="english" onclick="footerOption(event)">English</a>
+                    <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.648438 0.847656C0.546875 0.753906 0.496094 0.640625 0.496094 0.507812C0.496094 0.367188 0.546875 0.246094 0.648438 0.144531C0.742188 0.0507812 0.859375 0.00390625 1 0.00390625C1.14062 0.00390625 1.25781 0.0507812 1.35156 0.144531L4 2.79297L6.64844 0.144531C6.74219 0.0507812 6.85938 0.00390625 7 0.00390625C7.14062 0.00390625 7.25781 0.0507812 7.35156 0.144531C7.45312 0.246094 7.50391 0.367188 7.50391 0.507812C7.50391 0.640625 7.45312 0.753906 7.35156 0.847656L4.35156 3.84766C4.25781 3.94922 4.14062 4 4 4C3.85938 4 3.74219 3.94922 3.64844 3.84766L0.648438 0.847656Z"
+                            fill="black" />
+                    </svg>
+                    <div class="dropdown" id="language-dropdown-1">
+                        <a href="#" aria-label="language">English</a>
+                        <a href="#" aria-label="language">Việt Nam</a>
+                    </div>
+                </div>
+                <div class="currency-option-1 flex-center" onclick="toggleDropdown('currency-dropdown-1')">
+                    <a href="#" aria-label="money" onclick="footerOption(event)">United States (USD $)</a>
+                    <svg width="8" height="4" viewBox="0 0 8 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M0.648438 0.847656C0.546875 0.753906 0.496094 0.640625 0.496094 0.507812C0.496094 0.367188 0.546875 0.246094 0.648438 0.144531C0.742188 0.0507812 0.859375 0.00390625 1 0.00390625C1.14062 0.00390625 1.25781 0.0507812 1.35156 0.144531L4 2.79297L6.64844 0.144531C6.74219 0.0507812 6.85938 0.00390625 7 0.00390625C7.14062 0.00390625 7.25781 0.0507812 7.35156 0.144531C7.45312 0.246094 7.50391 0.367188 7.50391 0.507812C7.50391 0.640625 7.45312 0.753906 7.35156 0.847656L4.35156 3.84766C4.25781 3.94922 4.14062 4 4 4C3.85938 4 3.74219 3.94922 3.64844 3.84766L0.648438 0.847656Z"
+                            fill="black" />
+                    </svg>
+                    <div class="dropdown" id="currency-dropdown-1">
+                        <a href="#" aria-label="money-contry">United States (USD $)</a>
+                        <a href="#" aria-label="money-contry">Việt Nam (VNĐ)</a>
+                    </div>
                 </div>
             </div>
             <div class="text-center">

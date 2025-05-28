@@ -1,7 +1,21 @@
 function initScrollHeader() { let e = 0; const t = document.querySelector("header"); window.addEventListener("scroll", (function () { let n = window.pageYOffset || document.documentElement.scrollTop; n > e ? t.classList.add("hide") : t.classList.remove("hide"), e = n <= 0 ? 0 : n })) }
-function initDropdowns() { const e = document.querySelectorAll(".dropdown"), t = document.querySelectorAll(".language-option, .currency-option"); window.toggleDropdown = function (t) { const n = document.getElementById(t); e.forEach((e => { e.id !== t && e.classList.remove("active") })), n.classList.toggle("active") }, document.addEventListener("click", (function (n) { Array.from(t).some((e => e.contains(n.target))) || e.forEach((e => { e.classList.remove("active") })) })) }
+function initDropdowns() {
+    const e = document.querySelectorAll(".dropdown"),
+        t = document.querySelectorAll(".language-option, .currency-option, .language-option-1, .currency-option-1");
+    window.toggleDropdown = function (t) {
+        const n = document.getElementById(t);
+        e.forEach((e => { e.id !== t && e.classList.remove("active") })),
+            n.classList.toggle("active")
+    }
+    document.addEventListener("click", (function (n) { Array.from(t).some((e => e.contains(n.target))) || e.forEach((e => { e.classList.remove("active") })) }))
+}
+
+function footerOption(event){
+    event.preventDefault();
+}
 function initCategoryMenu() { const e = document.getElementById("categoryToggle"), t = document.getElementById("submenu-categories"), n = document.getElementById("overlay"); e && t && n && (e.addEventListener("click", (e => { e.stopPropagation(), t.classList.toggle("active"), n.classList.toggle("active") })), document.addEventListener("click", (o => { e.contains(o.target) || (t.classList.remove("active"), n.classList.remove("active")) })), n.addEventListener("click", (() => { t.classList.remove("active"), n.classList.remove("active") }))) }
-function toggleMenu() { const e = document.getElementById("menuOverlay"), t = document.getElementById("backdrop"); e.classList.toggle("active"), t.classList.toggle("active"), e.classList.remove("gray"), document.querySelectorAll(".mobile-sub-menu").forEach((e => { e.classList.remove("active") })) }
+function toggleMenu() { const e = document.getElementById("menuOverlay"), 
+    t = document.getElementById("backdrop"); e.classList.toggle("active"), t.classList.toggle("active"), e.classList.remove("gray"), document.querySelectorAll(".mobile-sub-menu").forEach((e => { e.classList.remove("active") })) }
 function toggleSubMenu(e) { const t = document.getElementById(`subMenu-${e}`), n = document.getElementById("menuOverlay"), o = t.classList.contains("active"); document.querySelectorAll(".mobile-sub-menu").forEach((e => { e.classList.remove("active") })), o ? n.classList.remove("gray") : (t.classList.add("active"), n.classList.add("gray")) } function closeAll() { const e = document.getElementById("menuOverlay"), t = document.getElementById("backdrop"); e.classList.remove("active"), t.classList.remove("active"), document.querySelectorAll(".mobile-sub-menu").forEach((e => { e.classList.remove("active") })), e.classList.remove("gray") }
 function initBannerSlider() {
     const prevBtn = document.querySelector(".prev");

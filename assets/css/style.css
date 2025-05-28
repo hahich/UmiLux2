@@ -1530,6 +1530,32 @@
     display: none
 }
 
+.footer-toggle {
+    line-height: 1.3;
+}
+
+#currency-dropdown-1,
+#language-dropdown-1 {
+    top: -70px;
+}
+
+.footer-option {
+    gap: 20px !important;
+}
+
+.currency-option-1,
+.language-option-1 {
+    position: relative;
+    gap: 5px;
+}
+
+.language-option-1 a,
+.currency-option-1 a {
+    font-size: var(--fs-14);
+    color: var(--gray-5555) !important;
+    font-weight: 500;
+}
+
 .mobile-menu-btn {
     border: none
 }

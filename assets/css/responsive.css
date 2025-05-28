@@ -2,7 +2,7 @@
     .footer-mobile {
         max-width: 100%;
         padding: 15px 0;
-        border-top: 1px solid var(--gray)
+        border-top: 1px solid #ddd;
     }
 
     .section-box {
@@ -14,7 +14,7 @@
     }
 
     .footer-newsletter {
-        border-bottom: 1px solid var(--gray)
+        border-bottom: 1px solid #ddd
     }
 
     .footer-title {
@@ -166,10 +166,6 @@
         max-width: 100%
     }
 
-    .footer-newsletter {
-        border-bottom: 1px solid var(--gray)
-    }
-
     .footer-title {
         font-size: var(--fs-16)
     }
@@ -182,7 +178,7 @@
 
     .footer-mobile {
         padding: 10px 0;
-        border-top: 1px solid var(--gray);
+        border-top: 1px solid #ddd;
         width: 100%
     }
 
@@ -303,13 +299,9 @@
         max-width: 100%
     }
 
-    .footer-newsletter {
-        border-bottom: 1px solid var(--gray)
-    }
-
     .footer-mobile {
         padding: 10px 0;
-        border-top: 1px solid var(--gray);
+        border-top: 1px solid #ddd;
         width: 100%
     }
 
@@ -446,13 +438,9 @@
         max-width: 100%
     }
 
-    .footer-newsletter {
-        border-bottom: 1px solid var(--gray)
-    }
-
     .footer-mobile {
         padding: 10px 0;
-        border-top: 1px solid var(--gray);
+        border-top: 1px solid #ddd;
         width: 100%
     }
 
