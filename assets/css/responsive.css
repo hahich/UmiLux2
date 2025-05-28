@@ -5,6 +5,10 @@
         border-top: 1px solid var(--gray)
     }
 
+    .section-box {
+        padding: 0 40px;
+    }
+
     .footer-title {
         margin: 0 !important
     }
