@@ -51,20 +51,20 @@
     /* Colors */
     --white: #FFFFFF;
     --black: #111111;
-    --gray: #757575;
-    --gray-5555: #555555;
-    --dark-navy-blue: #253380;
-    --light-navy-blue: #00768F;
+    --gray: #999999;
+    --gray-5555: #8D979E;
+    --dark-navy-blue: #253380;  
+    --light-navy-blue: #00A2C2;
     --yellow: #FFD700;
     --purple: #800080;
-    --red-color: #EB0000;
+    --red-color: #DD3327;
     --green: #008000;
 
     /* Background Colors */
     --bg-default: #545454;
-    --bg-console: #177E91;
-    --bg-phone: #E01F50;
-    --bg-camera: #4E21DE;
+    --bg-console: #24B0C5;
+    --bg-phone: #E8426A;
+    --bg-camera: #6944E6;
     --bg-selling: #F1F3F7;
     --bg-divider: #E5E8EC;
     --bg-insta: #cc39a4;

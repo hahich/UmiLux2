@@ -5,54 +5,360 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/main.css">
     <style>
-        .section-categories-console {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 500px;
-            background: #000000;
-            color: #ffffff;
-            border-radius: 30px;
+        #banner {
+            width: 100%;
             position: relative;
-            overflow: hidden;
-            z-index: 1;
+            min-height: 500px;
+            overflow: hidden
         }
 
-        .section-categories-console::before {
-            content: "";
+        .banner-inner {
+            position: relative;
+            height: 500px;
+            overflow: hidden
+        }
+
+        .banner-item {
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: #00a2c2;
-            transition: left 0.5s ease;
-            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            pointer-events: none;
+            aspect-ratio: 1920/500
         }
 
-        .section-categories-console:hover::before {
-            left: 0;
+        .banner-item.active {
+            opacity: 1;
+            pointer-events: auto
         }
 
-        .section-categories-console:not(:hover)::before {
-            left: -100%;
-            transition: left 0.5s ease;
+        .banner-item img {
+            width: 100%;
+            aspect-ratio: 3/1;
+            object-fit: cover;
+            display: block
+        }
+
+        .banner-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgb(0 0 0 / .5);
+            z-index: 31
+        }
+
+        .banner-text h2 {
+            font-size: clamp(2.6rem, 4.7vw, var(--header-font-size));
+            font-weight: var(--fw-600);
+            margin-bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.8s
+        }
+
+        .banner-text p {
+            opacity: 0;
+            margin-bottom: 15px;
+            transition: opacity 0.8s 0.4s
+        }
+
+        .banner-text .shop-now {
+            opacity: 0;
+            background: var(--white);
+            color: var(--black);
+            border: none;
+            padding: 18px 56px;
+            margin-top: 50px;
+            font-size: var(--fs-14);
+            text-transform: capitalize;
+            cursor: pointer;
+            border-radius: 30px;
+            font-weight: var(--fw-500);
+            overflow: hidden;
+            position: relative;
+            transition: opacity 0.8s 0.8s, background 0.3s
+        }
+
+        .shop-now:before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 120%;
+            background-color: #ff6700;
+            top: 50%;
+            transform: skewX(30deg) translate(-150%, -50%);
+            transition: all 0.5s
+        }
+
+        .shop-now:hover {
+            background-color: #4cc9f0;
+            color: #fff;
+            box-shadow: 0 2px 0 2px #0d3b66
+        }
+
+        .shop-now:hover::before {
+            transform: skewX(30deg) translate(150%, -50%);
+            transition-delay: 0.1s
+        }
+
+        .banner-item:nth-child(1) .banner-text {
+            transform: translate(-150%, -50%);
+            transition: transform 0.8s
+        }
+
+        .banner-item:nth-child(2) .banner-text,
+        .banner-item:nth-child(3) .banner-text {
+            transform: translate(-50%, 50%);
+            transition: transform 0.8s
+        }
+
+        .banner-item:nth-child(1).active .banner-text,
+        .banner-item:nth-child(2).active .banner-text,
+        .banner-item:nth-child(3).active .banner-text {
+            transform: translate(-50%, -50%)
+        }
+
+        .banner-item.active .banner-text h2,
+        .banner-item.active .banner-text p,
+        .banner-item.active .banner-text .shop-now {
+            opacity: 1
+        }
+
+        .banner-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: var(--flex);
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 33
+        }
+
+        #banner:hover .banner-buttons {
+            opacity: 1
+        }
+
+        .banner-btn {
+            background: var(--gray);
+            color: var(--white);
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: var(--fs-18);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            transition: background 0.3s
+        }
+
+        .banner-btn:hover {
+            background: var(--white)
+        }
+
+        .banner-dots {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            gap: var(--gap-10);
+            z-index: 41
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gray);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s
+        }
+
+        .dot.active {
+            background: var(--white)
         }
     </style>
 </head>
 
 <body>
-    <div class="section-categories-console section-categories-shop section-fadein">
-        <div class="section-categories-text">
-            <p>Gamepad <br> Save Up To $69</p>
-            <a href="./index.html"><button class="section-categories-buy">Shop Gamnepad</button></a>
+    <section id="banner" class="">
+        <div class="banner-inner">
+            <div class="banner-item active">
+                <img srcset="./assets/img/banner-sm.webp 600w, ./assets/img/banner-lg.webp 1200w"
+                    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 50vw" src="./assets/img/banner-sm.webp"
+                    alt="Forest Style Mechanical Keyboard" loading="eager" fetchpriority="high" width="425"
+                    height="400">
+                <div class="banner-text">
+                    <h2>Forest Style <br> Mechanical Keyboard</h2>
+                    <p>Discount 50% On Products & Free Shipping.</p>
+                    <button class="shop-now">Shop Now</button>
+                </div>
+            </div>
+            <div class="banner-item">
+                <img srcset="./assets/img/banner-sm.webp 600w, ./assets/img/banner-lg.webp 1200w"
+                    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 50vw" width="1920" height="500"
+                    src="./assets/img/banner-lg.webp" alt="Keyboard" loading="eager" fetchpriority="low">
+                <div class="banner-text">
+                    <h2>Forest Style <br> Mechanical Keyboard</h2>
+                    <p>Discount 50% On Products & Free Shipping.</p>
+                    <button class="shop-now">Shop Now</button>
+                </div>
+            </div>
+            <div class="banner-item">
+                <img srcset="./assets/img/banner-sm.webp 600w, ./assets/img/banner-lg.webp 1200w"
+                    sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 50vw" width="1920" height="500"
+                    src="./assets/img/banner-lg.webp" alt="Keyboard" loading="eager" fetchpriority="low">
+                <div class="banner-text">
+                    <h2>Forest Style <br> Mechanical Keyboard</h2>
+                    <p>Discount 50% On Products & Free Shipping.</p>
+                    <button class="shop-now">Shop Now</button>
+                </div>
+            </div>
         </div>
-
-        <div class="section-categories-img">
-            <img src="./assets/img/categories/console-lg.png" alt="console" loading="lazy">
+        <div class="banner-buttons">
+            <button class="banner-btn prev" aria-label="Previous Slide">
+                <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M5.77754 9.66681C5.92988 9.81915 6.00605 10.0008 6.00605 10.2117C6.00605 10.4109 5.92988 10.5809 5.77754 10.7215C5.63691 10.8738 5.46113 10.95 5.25019 10.95C5.03926 10.95 4.86348 10.8738 4.72285 10.7215L0.222851 6.2215C0.070507 6.08087 -0.00566483 5.91095 -0.00566483 5.71173C-0.00566483 5.50079 0.070507 5.31915 0.222851 5.16681L4.72285 0.666809C4.86348 0.526184 5.03926 0.455872 5.25019 0.455872C5.46113 0.455872 5.63691 0.526184 5.77754 0.666809C5.92988 0.819153 6.00605 1.00079 6.00605 1.21173C6.00605 1.41095 5.92988 1.58087 5.77754 1.7215L1.80488 5.69415L5.77754 9.66681Z"
+                        fill="#111111" />
+                </svg>
+            </button>
+            <button class="banner-btn next" aria-label="Next Slide">
+                <svg width="6" height="11" viewBox="0 0 6 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M1.27754 10.7215C1.13691 10.8738 0.961132 10.95 0.750195 10.95C0.539257 10.95 0.363476 10.8738 0.222851 10.7215C0.070507 10.5809 -0.00566483 10.4109 -0.00566483 10.2117C-0.00566483 10.0008 0.070507 9.81915 0.222851 9.66681L4.19551 5.69415L0.222851 1.7215C0.070507 1.58087 -0.00566483 1.41095 -0.00566483 1.21173C-0.00566483 1.00079 0.070507 0.819153 0.222851 0.666809C0.363476 0.526184 0.539257 0.455872 0.750195 0.455872C0.961132 0.455872 1.13691 0.526184 1.27754 0.666809L5.77754 5.16681C5.92988 5.31915 6.00605 5.50079 6.00605 5.71173C6.00605 5.91095 5.92988 6.08087 5.77754 6.2215L1.27754 10.7215Z"
+                        fill="#111111" />
+                </svg>
+            </button>
         </div>
-    </div>
+        <div class="banner-dots flex-center">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
 </body>
+
+<script>
+    function initBannerSlider() {
+        const prevBtn = document.querySelector(".prev");
+        const nextBtn = document.querySelector(".next");
+        const banner = document.querySelector("#banner");
+        const items = document.querySelectorAll(".banner-item");
+        const dots = document.querySelectorAll(".dot");
+        const bannerInner = document.querySelector(".banner-inner");
+
+        let interval;
+        let currentSlide = 0;
+        let startX = 0;
+        let isDragging = false;
+
+        // Thêm các biến cho drag functionality
+        let currentTranslate = 0;
+        let prevTranslate = 0;
+
+        const updateSlider = () => {
+            items.forEach((item, index) => {
+                item.classList.toggle("active", index === currentSlide);
+                item.style.zIndex = index === currentSlide ? 1 : 0;
+            });
+            dots.forEach((dot, index) => dot.classList.toggle("active", index === currentSlide));
+        };
+
+        const setSlide = (index) => {
+            currentSlide = (index + items.length) % items.length;
+            updateSlider();
+        };
+
+        const nextSlide = () => setSlide(currentSlide + 1);
+
+        const startAutoplay = () => {
+            if (!interval) {
+                interval = setInterval(nextSlide, 5000);
+            }
+        };
+
+        const stopAutoplay = () => {
+            clearInterval(interval);
+            interval = null;
+        };
+
+        // Xử lý drag functionality
+        function touchStart(event) {
+            isDragging = true;
+            startX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+            stopAutoplay();
+        }
+
+        function touchMove(event) {
+            if (!isDragging) return;
+            const currentPosition = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+            const diff = currentPosition - startX;
+
+            // Nếu kéo đủ xa (> 100px), chuyển slide
+            if (Math.abs(diff) > 100) {
+                if (diff > 0) {
+                    setSlide(currentSlide - 1);
+                } else {
+                    setSlide(currentSlide + 1);
+                }
+                isDragging = false;
+                startAutoplay();
+            }
+        }
+
+        function touchEnd() {
+            isDragging = false;
+            startAutoplay();
+        }
+
+        // Event listeners cho drag
+        bannerInner.addEventListener('touchstart', touchStart);
+        bannerInner.addEventListener('touchmove', touchMove);
+        bannerInner.addEventListener('touchend', touchEnd);
+        bannerInner.addEventListener('mousedown', touchStart);
+        bannerInner.addEventListener('mousemove', touchMove);
+        bannerInner.addEventListener('mouseup', touchEnd);
+        bannerInner.addEventListener('mouseleave', touchEnd);
+
+        // Prevent context menu on right click
+        bannerInner.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Các event listeners khác
+        prevBtn?.addEventListener("click", () => {
+            stopAutoplay();
+            setSlide(currentSlide - 1);
+            setTimeout(startAutoplay, 100);
+        });
+
+        nextBtn?.addEventListener("click", () => {
+            stopAutoplay();
+            nextSlide();
+            setTimeout(startAutoplay, 100);
+        });
+
+        dots.forEach((dot, index) => dot.addEventListener("click", () => {
+            stopAutoplay();
+            setSlide(index);
+            startAutoplay();
+        }));
+
+        banner?.addEventListener("mouseenter", stopAutoplay);
+        banner?.addEventListener("mouseleave", startAutoplay);
+
+        updateSlider();
+        startAutoplay();
+    }
+
+    document.addEventListener("DOMContentLoaded", initBannerSlider);
+</script>
 
 </html>

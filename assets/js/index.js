@@ -3,7 +3,109 @@ function initDropdowns() { const e = document.querySelectorAll(".dropdown"), t =
 function initCategoryMenu() { const e = document.getElementById("categoryToggle"), t = document.getElementById("submenu-categories"), n = document.getElementById("overlay"); e && t && n && (e.addEventListener("click", (e => { e.stopPropagation(), t.classList.toggle("active"), n.classList.toggle("active") })), document.addEventListener("click", (o => { e.contains(o.target) || (t.classList.remove("active"), n.classList.remove("active")) })), n.addEventListener("click", (() => { t.classList.remove("active"), n.classList.remove("active") }))) }
 function toggleMenu() { const e = document.getElementById("menuOverlay"), t = document.getElementById("backdrop"); e.classList.toggle("active"), t.classList.toggle("active"), e.classList.remove("gray"), document.querySelectorAll(".mobile-sub-menu").forEach((e => { e.classList.remove("active") })) }
 function toggleSubMenu(e) { const t = document.getElementById(`subMenu-${e}`), n = document.getElementById("menuOverlay"), o = t.classList.contains("active"); document.querySelectorAll(".mobile-sub-menu").forEach((e => { e.classList.remove("active") })), o ? n.classList.remove("gray") : (t.classList.add("active"), n.classList.add("gray")) } function closeAll() { const e = document.getElementById("menuOverlay"), t = document.getElementById("backdrop"); e.classList.remove("active"), t.classList.remove("active"), document.querySelectorAll(".mobile-sub-menu").forEach((e => { e.classList.remove("active") })), e.classList.remove("gray") }
-function initBannerSlider() { const e = document.querySelector(".prev"), t = document.querySelector(".next"), n = document.querySelector("#banner"), o = document.querySelectorAll(".banner-item"), s = document.querySelectorAll(".dot"); let i, a = 0; const c = () => { o.forEach(((e, t) => { e.classList.toggle("active", t === a), e.style.zIndex = t === a ? 1 : 0 })), s.forEach(((e, t) => e.classList.toggle("active", t === a))) }, r = e => { a = (e + o.length) % o.length, c() }, l = () => r(a + 1), d = () => { i || (i = setInterval(l, 5e3)) }, u = () => { clearInterval(i), i = null }; e?.addEventListener("click", (() => { u(), r(a - 1), setTimeout(d, 100) })), t?.addEventListener("click", (() => { u(), l(), setTimeout(d, 100) })), s.forEach(((e, t) => e.addEventListener("click", (() => { u(), r(t), d() })))), n?.addEventListener("mouseenter", u), n?.addEventListener("mouseleave", d), c(), d() }
+function initBannerSlider() {
+    const prevBtn = document.querySelector(".prev");
+    const nextBtn = document.querySelector(".next");
+    const banner = document.querySelector("#banner");
+    const items = document.querySelectorAll(".banner-item");
+    const dots = document.querySelectorAll(".dot");
+    const bannerInner = document.querySelector(".banner-inner");
+
+    let interval;
+    let currentSlide = 0;
+    let startX = 0;
+    let isDragging = false;
+
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+
+    const updateSlider = () => {
+        items.forEach((item, index) => {
+            item.classList.toggle("active", index === currentSlide);
+            item.style.zIndex = index === currentSlide ? 1 : 0;
+        });
+        dots.forEach((dot, index) => dot.classList.toggle("active", index === currentSlide));
+    };
+
+    const setSlide = (index) => {
+        currentSlide = (index + items.length) % items.length;
+        updateSlider();
+    };
+
+    const nextSlide = () => setSlide(currentSlide + 1);
+
+    const startAutoplay = () => {
+        if (!interval) {
+            interval = setInterval(nextSlide, 5000);
+        }
+    };
+
+    const stopAutoplay = () => {
+        clearInterval(interval);
+        interval = null;
+    };
+
+    function touchStart(event) {
+        isDragging = true;
+        startX = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        stopAutoplay();
+    }
+
+    function touchMove(event) {
+        if (!isDragging) return;
+        const currentPosition = event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+        const diff = currentPosition - startX;
+
+        if (Math.abs(diff) > 100) {
+            if (diff > 0) {
+                setSlide(currentSlide - 1);
+            } else {
+                setSlide(currentSlide + 1);
+            }
+            isDragging = false;
+            startAutoplay();
+        }
+    }
+
+    function touchEnd() {
+        isDragging = false;
+        startAutoplay();
+    }
+
+    bannerInner.addEventListener('touchstart', touchStart);
+    bannerInner.addEventListener('touchmove', touchMove);
+    bannerInner.addEventListener('touchend', touchEnd);
+    bannerInner.addEventListener('mousedown', touchStart);
+    bannerInner.addEventListener('mousemove', touchMove);
+    bannerInner.addEventListener('mouseup', touchEnd);
+    bannerInner.addEventListener('mouseleave', touchEnd);
+
+    bannerInner.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    prevBtn?.addEventListener("click", () => {
+        stopAutoplay();
+        setSlide(currentSlide - 1);
+        setTimeout(startAutoplay, 100);
+    });
+
+    nextBtn?.addEventListener("click", () => {
+        stopAutoplay();
+        nextSlide();
+        setTimeout(startAutoplay, 100);
+    });
+
+    dots.forEach((dot, index) => dot.addEventListener("click", () => {
+        stopAutoplay();
+        setSlide(index);
+        startAutoplay();
+    }));
+
+    banner?.addEventListener("mouseenter", stopAutoplay);
+    banner?.addEventListener("mouseleave", startAutoplay);
+
+    updateSlider();
+    startAutoplay();
+}
 function initSaleCarousels() {
     if (typeof jQuery === 'undefined') return;
 } const isMobile = window.innerWidth < 1024;
