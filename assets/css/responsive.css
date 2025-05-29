@@ -1,4 +1,14 @@
 @media(max-width:1200px) {
+    .section-sp-wrapper {
+        flex-direction: column !important;
+    }
+
+    .section-sp {
+        width: 100% !important;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+    }
+    
     .footer-mobile {
         max-width: 100%;
         padding: 15px 0;
@@ -152,7 +162,7 @@
     }
 
     .section-sp {
-        width: 100%;
+        width: 100% !important;
         padding: 10px 20px
     }
 
@@ -430,6 +440,15 @@
 
     .deals-card-title>p {
         transform: translateX(-12%)
+    }
+    
+    .section-sp {
+        width: 100% !important;
+        padding: 10px 20px
+    }
+
+    .section-box::after {
+        display: none
     }
 
     .footer-about,

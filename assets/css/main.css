@@ -8,7 +8,7 @@
 /* Fonts */
 @font-face {
     font-family: 'GeneralSans';
-    src: url('../fonts/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Regular.woff2') format('opentype');
+    src: url('../fonts/General_sans/GeneralSans-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -16,7 +16,7 @@
 
 @font-face {
     font-family: 'GeneralSans';
-    src: url('../fonts/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Bold.woff2') format('opentype');
+    src: url('../fonts/General_sans/GeneralSans-Bold.otf') format('opentype');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -24,16 +24,8 @@
 
 @font-face {
     font-family: 'GeneralSans';
-    src: url('../fonts/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-Italic.woff2') format('opentype');
+    src: url('../fonts/General_sans/GeneralSans-Italic.otf') format('opentype');
     font-weight: normal;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'GeneralSans';
-    src: url('../fonts/GeneralSans_Complete/Fonts/WEB/fonts/GeneralSans-BoldItalic.woff2') format('opentype');
-    font-weight: bold;
     font-style: italic;
     font-display: swap;
 }
@@ -69,7 +61,7 @@
     --bg-divider: #E5E8EC;
     --bg-insta: #cc39a4;
     --bg-facebook: #367cf4;
-    --bg-yellow: #807800;
+    --bg-yellow: #F8BA26;
 
     /* Layout */
     --container-width: 1440px;
@@ -102,7 +94,7 @@ html::-webkit-scrollbar {
 /* Global Styles */
 html,
 body {
-    font-family: 'General-Sans', sans-serif !important;
+    font-family: 'GeneralSans', sans-serif !important;
     font-size: 16px;
 }
 
@@ -190,3 +182,9 @@ svg:hover {
 .hide {
     top: -200px !important;
 }
+
+.view {
+    gap: 5px;
+    color: var(--gray) !important;
+}
+
