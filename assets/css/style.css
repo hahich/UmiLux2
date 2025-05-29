@@ -160,7 +160,7 @@
 }
 
 .header-middle-search-button:hover {
-    background-color: #00A2C2
+    background-color: var(--light-navy-blue)
 }
 
 .header-middle-icon,
@@ -412,11 +412,12 @@
 }
 
 .banner-text h2 {
-    font-size: clamp(2.6rem, 4.7vw, var(--header-font-size));
+    font-size: clamp(2.6rem, 4.7vw, var(--banner-font-size));
     font-weight: var(--fw-600);
     margin-bottom: 20px;
     opacity: 0;
-    transition: opacity 0.8s
+    transition: opacity 0.8s;
+    line-height: 60px;
 }
 
 .banner-text p {
@@ -630,13 +631,6 @@
     font-size: var(--fs-18)
 }
 
-.circle-daily,
-.circle-text-last {
-    rotate: -11deg;
-    font-weight: 900;
-    font-style: italic
-}
-
 .circle-daily {
     font-size: var(--fs-18)
 }
@@ -676,8 +670,8 @@
 
 .product:hover img,
 .product:hover .circle-text,
-.product:hover .circle-text-last {
-    transform: scale(1.2);
+.product:hover .circle-text {
+    transform: scale(1.1);
     transition: transform 0.3s ease;
     cursor: pointer
 }
