@@ -174,7 +174,8 @@ function initSellCarousel() {
         },
         snapToSlide = (idx, cardWidth) => {
             const total = e.querySelectorAll(".section-sell-product-card").length;
-            const maxIdx = total - Math.floor(e.offsetWidth / cardWidth);
+            const visible = Math.max(1, Math.floor(e.offsetWidth / cardWidth));
+            const maxIdx = Math.max(0, total - visible);
             currentIndex = Math.max(0, Math.min(idx, maxIdx));
             const target = -currentIndex * cardWidth;
             animateTo(target);
@@ -195,8 +196,9 @@ function initSellCarousel() {
             t = setInterval(() => {
                 const card = e.querySelector(".section-sell-product-card"),
                     total = e.querySelectorAll(".section-sell-product-card").length,
-                    visible = Math.floor(e.offsetWidth / card.offsetWidth);
-                currentIndex = currentIndex >= total - visible ? 0 : currentIndex + 1;
+                    visible = Math.max(1, Math.floor(e.offsetWidth / card.offsetWidth)),
+                    maxIdx = Math.max(0, total - visible);
+                currentIndex = currentIndex >= maxIdx ? 0 : currentIndex + 1;
                 snapToSlide(currentIndex, card.offsetWidth);
             }, 3000);
         },

@@ -45,12 +45,14 @@
     --black: #111111;
     --gray: #999999;
     --gray-5555: #555555;
+    --bg-main: #F1F3F7;
+    --strike: #8D979E;
     --dark-navy-blue: #253380;  
     --light-navy-blue: #00A2C2;
     --yellow: #FFD700;
     --purple: #800080;
     --red-color: #DD3327;
-    --green: #008000;
+    --green: #008A00;
 
     /* Background Colors */
     --bg-default: #545454;
@@ -62,6 +64,7 @@
     --bg-insta: #cc39a4;
     --bg-facebook: #367cf4;
     --bg-yellow: #F8BA26;
+    --bg-btn: #0D53BB;
 
     /* Layout */
     --container-width: 1440px;
