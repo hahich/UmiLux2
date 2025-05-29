@@ -278,11 +278,9 @@
 }
 
 .header-bottom-submenu {
-    top: 37px;
+    top: 35px;
     left: 0;
-    border-radius: 4px;
     min-width: 200px;
-    border: 1px solid var(--black);
     transform: translateY(10px)
 }
 
@@ -1154,7 +1152,6 @@
     max-width: 100%;
     margin: 0 auto;
     position: relative;
-    padding: 0 16px;
 }
 
 .product-img-wrapper {
@@ -1538,6 +1535,7 @@
 p.open,
 p.close {
     display: none !important;
+    color: var(--black) !important;
 }
 
 #language-dropdown-1 {
