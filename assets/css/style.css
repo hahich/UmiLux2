@@ -1007,7 +1007,7 @@
 
 .section-sell-btn {
     margin-top: 40px;
-    padding: 13px 43px;
+    padding: 16px 44px;
     border-radius: 30px;
     background-color: var(--bg-btn);
     cursor: pointer;
@@ -1586,7 +1586,7 @@ p.close {
 .mobile-menu-header {
     background: var(--dark-navy-blue);
     color: var(--white);
-    padding: 10px 20px;
+    padding: 15px 30px;
     display: var(--flex);
     justify-content: space-between;
     align-items: var(--center)
@@ -1619,7 +1619,7 @@ p.close {
 }
 
 .mobile-menu-list li {
-    margin: 0 20px;
+    margin: 0 30px;
     padding: 15px 0px;
     border-bottom: 1px solid #ddd;
     font-size: 16px;

@@ -171,7 +171,7 @@
     }
 }
 
-@media(min-width:768px) and (max-width:1024px) {
+@media(min-width:769px) and (max-width:1024px) {
 
     .header-top,
     .header-middle-search-container,
@@ -192,6 +192,10 @@
         padding: 0 15px 15px;
         margin-left: 0;
         display: block;
+    }
+
+    .mobile-menu-overlay {
+        width: 400px;
     }
 
     .banner-item img {
@@ -330,12 +334,16 @@
     }
 }
 
-@media(min-width:576px) and (max-width:767px) {
+@media(min-width:576px) and (max-width:768px) {
 
     .header-middle-search-container,
     .header-middle-search-mobile {
         padding: 0 15px 15px;
         margin-left: 0
+    }
+
+    .mobile-menu-overlay {
+        width: 400px;
     }
 
     #banner {
