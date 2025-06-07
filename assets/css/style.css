@@ -781,14 +781,11 @@
     transition: width 0.3s ease
 }
 
-.section-categories-shop:hover .section-categories-buy:after {
-    background-color: var(--light-navy-blue);
+.section-categories-shop:hover .section-categories-buy:after,
+.section-categories-shop:hover .section-categories-buy {
+    opacity: .8 !important;
+    color: var(--white) !important;
     transition: all 0.3s ease-in-out;
-}
-
-.section-categories-shop:hover a {
-    color: var(--light-navy-blue) !important;
-    transition: color 0.3s ease-in-out
 }
 
 .section-bottom-card,
@@ -1571,7 +1568,7 @@ p.close {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 50%;
+    width: 35%;
     height: 100%;
     background: var(--white);
     z-index: 1000;
@@ -1587,7 +1584,7 @@ p.close {
 }
 
 .mobile-menu-header {
-    background: #ff4500;
+    background: var(--dark-navy-blue);
     color: var(--white);
     padding: 10px 20px;
     display: var(--flex);
@@ -1622,7 +1619,8 @@ p.close {
 }
 
 .mobile-menu-list li {
-    padding: 15px 20px;
+    margin: 0 20px;
+    padding: 15px 0px;
     border-bottom: 1px solid #ddd;
     font-size: 16px;
     cursor: pointer;
@@ -1672,7 +1670,7 @@ p.close {
 }
 
 .mobile-sub-menu-header {
-    background: var(--red-color);
+    background: var(--dark-navy-blue);
     color: var(--white);
     padding: 10px 20px;
     display: var(--flex);
