@@ -35,8 +35,8 @@
     }
 
     .section-sp-wrapper {
-        flex-direction: column !important;
         padding: 0 16px;
+        flex-wrap: wrap;
     }
 
     #section-recommend,
@@ -45,7 +45,6 @@
     }
 
     .section-sp {
-        width: 100% !important;
         padding: 10px 20px;
         margin-bottom: 10px;
     }
