@@ -61,7 +61,7 @@
 }
 
 .header-middle {
-    padding: 24px 15px
+    padding: 27px 15px
 }
 
 .left-header,
@@ -232,7 +232,7 @@
 
 .header-bottom {
     margin: 0 auto;
-    padding: 16px 15px;
+    padding: 18px 15px;
     font-size: var(--fs-14)
 }
 
@@ -879,7 +879,8 @@
     text-align: left;
     display: var(--flex);
     flex-direction: column;
-    gap: 5px
+    gap: 5px;
+    margin-top: 5px;
 }
 
 .section-text-s,
@@ -955,7 +956,7 @@
 }
 
 .section-selling-header {
-    margin: 44px 15px 0
+    margin: 60px 15px 0
 }
 
 .section-right:hover a svg path {
@@ -1184,6 +1185,10 @@
     object-fit: contain
 }
 
+.section-promotions {
+    margin-top: 35px;
+}
+
 .section-promotions-blog {
     gap: 30px;
     justify-content: space-evenly;
@@ -1265,7 +1270,7 @@
 
 #section-shipping {
     gap: 48px;
-    margin: 40px auto 38px auto;
+    margin: 46px auto 45px auto;
 }
 
 #section-support {
@@ -1452,7 +1457,7 @@
 
 #customerService a,
 #footer-categories a {
-    margin-bottom: 15px;
+    margin-bottom: 9px;
     line-height: 26px;
 }
 
